@@ -328,6 +328,24 @@ $(SRC_DIR)/ortools/dotnet/$(ORTOOLS_FSHARP_DLL_NAME)/$(ORTOOLS_FSHARP_DLL_NAME).
  ortools$Sdotnet$S$(ORTOOLS_FSHARP_DLL_NAME)$S$(ORTOOLS_FSHARP_DLL_NAME).fsproj.in \
  >ortools$Sdotnet$S$(ORTOOLS_FSHARP_DLL_NAME)$S$(ORTOOLS_FSHARP_DLL_NAME).fsproj
 
+###############
+##  TESTING  ##
+###############
+DOTNET_EXAMPLES = \
+$(BIN_DIR)/a_puzzle$D \
+$(BIN_DIR)/tsp$D
+
+.PHONY: dotnetexe
+dotnetexe: $(DOTNET_EXAMPLES)
+
+$(BIN_DIR)/%$D: $(DOTNET_EX_DIR)/csharp/%.csproj $(DOTNET_EX_DIR)/csharp/%.cs \
+ dotnet | $(BIN_DIR)
+	"$(DOTNET_BIN)" build \
+ -o "..$S..$S..$S$(BIN_DIR)" \
+ "$(DOTNET_EX_PATH)$Scsharp$S$*.csproj"
+	"$(DOTNET_BIN)" $(BIN_DIR)$S$*$D
+
+
 .PHONY: clean_dotnet # Clean files
 clean_dotnet:
 	-$(DELREC) tools$Sdotnet$SCreateSigningKey$Sbin

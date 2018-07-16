@@ -96,6 +96,7 @@ run_YoungTableaux
 # csharp test
 .PHONY: test_csharp_examples
 test_csharp_examples: csharp
+	$(warning C# netfx not working)
 	$(MONO) $(BIN_DIR)$Scslinearprogramming$(CLR_EXE_SUFFIX).exe
 	$(MONO) $(BIN_DIR)$Scsintegerprogramming$(CLR_EXE_SUFFIX).exe
 	$(MONO) $(BIN_DIR)$Scsrabbitspheasants$(CLR_EXE_SUFFIX).exe
